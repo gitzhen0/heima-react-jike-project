@@ -4,15 +4,15 @@ import logo from '@/assets/logo.png'
 
 const Login = () => {
 
-
-
-
+  const onFinish = (values) => {
+    console.log(values)
+  }
   return (
     <div className="login">
       <Card className="login-container">
         <img className="login-logo" src={logo} alt="" />
         {/* 登录表单 */}
-        <Form validateTrigger="onBlur">
+        <Form onFinish={onFinish} validateTrigger="onBlur">
           <Form.Item
             name="mobile"
             rules={[
