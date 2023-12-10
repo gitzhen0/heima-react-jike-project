@@ -1,11 +1,14 @@
 import './index.scss'
 import { Card, Form, Input, Button } from 'antd'
 import logo from '@/assets/logo.png'
+import { useDispatch } from 'react-redux'
+import { fetchLogin } from '@/store/modules/user'
 
 const Login = () => {
+  const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    console.log(values)
+    dispatch(fetchLogin(values))
   }
   return (
     <div className="login">
@@ -30,10 +33,16 @@ const Login = () => {
           </Form.Item>
           <Form.Item
             name="code"
-            rules={[{
-              required: true,
-              message: '请输入验证码!'
-            }]}
+            rules={[
+              {
+                required: true,
+                message: '请输入验证码!'
+              },
+              {
+                pattern: /^246810$/,
+                message: "246810 is the only valid choice, limited by BE"
+              }
+            ]}
           >
             <Input size="large" placeholder="请输入验证码" />
           </Form.Item>
