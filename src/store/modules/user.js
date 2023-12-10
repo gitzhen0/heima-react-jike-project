@@ -4,11 +4,12 @@ import { request } from '@/utils'
 const userStore = createSlice({
   name: "user",
   initialState: {
-    token: ''
+    token: localStorage.getItem('token_key') || ''
   },
   reducers: {
     setToken(state, action) {
       state.token = action.payload
+      localStorage.setItem('token_key', action.payload)
     }
   }
 })
@@ -22,7 +23,6 @@ const userReducer = userStore.reducer
 const fetchLogin = (loginForm) => {
   return async (dispatch) => {
     const res = await request.post('/authorizations', loginForm)
-    console.log(res.data.data.token)
     dispatch(setToken(res.data.data.token))
   }
 }
