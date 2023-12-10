@@ -1,14 +1,20 @@
 import axios from "axios"
+import { getToken } from "./token";
 
 const request = axios.create({
   baseURL: 'http://geek.itheima.net/v1_0',
   timeout: 5000
 })
 
-//https://axios-http.com/docs/interceptors
+//Documentation: https://axios-http.com/docs/interceptors
 
 request.interceptors.request.use(function (config) {
   // Do something before request is sent
+
+  const token = getToken()
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
   return config;
 }, function (error) {
   // Do something with request error
