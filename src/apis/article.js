@@ -6,3 +6,12 @@ export function getChannelAPI() {
     method: 'GET',
   })
 }
+
+
+export function createArticleAPI(data) {
+  return request({
+    url: '/mp/articles?draft=false',
+    method: 'POST',
+    data
+  })
+}
