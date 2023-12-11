@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, Breadcrumb, Form, Button, Radio, DatePicker, Select } from 'antd'
+import { Card, Breadcrumb, Form, Button, Radio, DatePicker, Select, Popconfirm } from 'antd'
 import locale from 'antd/es/date-picker/locale/zh_CN'
 
 import { Table, Tag, Space } from 'antd'
@@ -8,7 +8,7 @@ import img404 from '@/assets/error.png'
 import { useChannel } from '@/hooks/useChannel'
 
 import { useState, useEffect } from 'react'
-import { getArticleListAPI } from '@/apis/article'
+import { delArticleAPI, getArticleListAPI } from '@/apis/article'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
@@ -58,16 +58,28 @@ const Article = () => {
     },
     {
       title: '操作',
-      render: data => {
+      render: (data, data2) => {
         return (
           <Space size="middle">
             <Button type="primary" shape="circle" icon={<EditOutlined />} />
-            <Button
-              type="primary"
-              danger
-              shape="circle"
-              icon={<DeleteOutlined />}
-            />
+            <Popconfirm
+              title="delete article"
+              description="are you sure?"
+              onConfirm={() => {
+                onConfirm(data2)
+              }}
+              okText="yes"
+              cancelText="no"
+            >
+              <Button
+                type="primary"
+                danger
+                shape="circle"
+                icon={<DeleteOutlined />}
+              />
+
+            </Popconfirm>
+
           </Space>
         )
       }
@@ -129,6 +141,13 @@ const Article = () => {
     setReqData({
       ...reqData,
       page
+    })
+  }
+
+  const onConfirm = async (data) => {
+    await delArticleAPI(data.id)
+    setReqData({
+      ...reqData
     })
   }
 
