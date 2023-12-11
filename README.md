@@ -1,5 +1,7 @@
 * Bilibili Link: https://www.bilibili.com/video/BV1ZB4y1Z7o8?p=81&vd_source=2079bd5007b55a4a80052601af41e5e3
 
+* when npm install meet error:
+  * npm install --legacy-peer-deps
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
