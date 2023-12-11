@@ -19,22 +19,12 @@ import 'react-quill/dist/quill.snow.css'
 
 import { useEffect, useState } from 'react'
 import { createArticleAPI, getChannelAPI } from '@/apis/article'
-
+import { useChannel } from "@/hooks/useChannel"
 const { Option } = Select
 
 const Publish = () => {
 
-
-  const [channelList, setChannelList] = useState([])
-
-  useEffect(() => {
-    const getChannelList = async () => {
-      const res = await getChannelAPI()
-      console.log("something happ")
-      setChannelList(res.data.data.channels)
-    }
-    getChannelList()
-  }, [])
+  const { channelList } = useChannel()
 
   const onFinish = (formValue) => {
     console.log(formValue)
