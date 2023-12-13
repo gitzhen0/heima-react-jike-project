@@ -1,3 +1,6 @@
+* 没做完
+* 还有 7~8 个视频没做
+
 * Bilibili Link: https://www.bilibili.com/video/BV1ZB4y1Z7o8?p=81&vd_source=2079bd5007b55a4a80052601af41e5e3
 
 * when npm install meet error:
